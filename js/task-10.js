@@ -18,15 +18,21 @@ function createBoxes(amount) {
 
   for (let i = 0; i < amount; i += 1) {
     const size = `${elementSize}px`;
-    const color = getRandomHexColor();
+    const bgColor = getRandomHexColor();
+    boxes.insertAdjacentHTML(
+      "beforeend",
+      `<div style="
+    width:${size};
+     height:${size};
+     background-color:${bgColor};"
+     class="box";>`
+    );
 
-    const element = document.createElement("div");
-    element.classList.add("box");
-    element.style.width = size;
-    element.style.height = size;
-    element.style.backgroundColor = color;
-
-    elements.push(element);
+    // elements.push(element);
+    // element.classList.add("box");
+    // element.style.width = size;
+    // element.style.height = size;
+    // element.style.backgroundColor = color;
 
     elementSize += 10;
   }
@@ -36,10 +42,6 @@ function createBoxes(amount) {
 function destroyBoxes() {
   refs.boxes.innerHTML = "";
 }
-
-createBtn.addEventListener("click", () => {
-  createBoxes(inputAmount.value);
-});
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
